@@ -26,7 +26,7 @@ Finally:
 Build
 -----
 
-Binaries used in the buildpack are prebuilt and hosted on SourceForge for convenience, but you can build them yourself like so:
+Binaries used in the buildpack are prebuilt and hosted on S3 for convenience, but you can build them yourself like so:
 
     heroku create --buildpack https://github.com/heroku/heroku-buildpack-java.git
     

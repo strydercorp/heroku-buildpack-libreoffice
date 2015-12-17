@@ -7,6 +7,7 @@ CACHE_DIR=$2
 
 # config
 VERSION="5.0.2"
+<<<<<<< HEAD
 MINOR_VERSION="5.0"
 
 # LibreOffice Binaries URL
@@ -17,6 +18,17 @@ ARCHIVE_NAME=opt/libreoffice${VERSION}
 # LibreOffice Dependencies URL
 DEPS_FILE_NAME=libreoffice${VERSION}_x86-64_deps.tar.gz
 DEPS_BUILDPACK_LIBREOFFICE_PACKAGE=https://s3-eu-west-1.amazonaws.com/libreoffice-heroku-buildpack/${DEPS_FILE_NAME}
+=======
+
+# LibreOffice Binaries URL
+FILE_NAME=libreoffice${VERSION}_x86-64.tar.gz
+BUILDPACK_LIBREOFFICE_PACKAGE=https://s3.amazonaws.com/handshake-public/${FILE_NAME}
+ARCHIVE_NAME=opt/libreoffice${VERSION}
+
+# LibreOffice Dependencies URL
+DEPS_FILE_NAME=libreoffice_deps.tar.gz
+DEPS_BUILDPACK_LIBREOFFICE_PACKAGE=https://s3.amazonaws.com/handshake-public/${DEPS_FILE_NAME}
+>>>>>>> origin
 DEPS_ARCHIVE_NAME=app/vendor/libreoffice/deps
 
 mkdir -p $CACHE_DIR
@@ -44,6 +56,9 @@ mv $CACHE_DIR/$DEPS_ARCHIVE_NAME $BUILD_DIR/vendor/libreoffice/deps
 echo "-----> LibreOffice: Setting PATH and LD_LIBRARY_PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/libreoffice.sh"
 mkdir -p $(dirname $PROFILE_PATH)
+
+echo "-----> LibreOffice: Cleaning up"
+rm -f $CACHE_DIR/$FILE_NAME
 
 # add vendor binaries to the path
 echo 'export PATH="$HOME/vendor/libreoffice/program:/app/vendor/libreoffice/deps/bin:$PATH"' >> $PROFILE_PATH
